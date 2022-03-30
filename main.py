@@ -13,10 +13,10 @@ from selenium.common.exceptions import NoSuchElementException
 # Secrets Import
 from env import username, password  # Fernuni Zugangsdaten
 from env import sender_mail as sender  # Versendender Mailserver
-from env import empfaenger 
+from env import empfaenger # Empfängeradresse
 
-
-debug = 0
+refresh_intervall = 600 # Refresh Intervall
+debug = 0   # 0 bedeutet headless; 1 nur für debug nutzen!
 
 chrome_options = Options()
 if not debug:
@@ -46,7 +46,7 @@ tabelle = driver.find_element_by_xpath(leistungstabelle).text
 tabelle_neu = driver.find_element_by_xpath(leistungstabelle).text
 print("starting the idle")
 while tabelle_neu == tabelle:
-    sleep(300)
+    sleep(refresh_intervall)
     driver.refresh()
     print("Refreshing")
     tabelle_neu = driver.find_element_by_xpath(leistungstabelle).text
