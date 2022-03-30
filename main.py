@@ -26,7 +26,7 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 
 
 driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-driver.get("https://pos.fernuni-hagen.de/qisserver/rds?state=user&type=0&category=auth.logout")#put here the adress of your page
+driver.get("https://pos.fernuni-hagen.de/qisserver/rds?state=user&type=0&category=auth.logout") # die FU-POS Seite
 elem = driver.find_element_by_id("loginForm:login")
 print(elem.get_attribute("class"))
 user = driver.find_element_by_id("asdf")
@@ -54,7 +54,7 @@ while tabelle_neu == tabelle:
 smtpObject = smtplib.SMTP_SSL(host=sender['host'], port=465)
 FROM = sender['emailaddress']
 smtpObject.login(FROM, sender['password'])
-x = empfaenger  # TODO needs testing if mail is send
+x = empfaenger  
 if len(tabelle_neu) > len(tabelle):        
     try:
         msg = MIMEText(
