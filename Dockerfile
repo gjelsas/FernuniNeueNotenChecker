@@ -40,7 +40,6 @@ ENV DISPLAY=:99
 
 WORKDIR /app
 COPY . /app
-COPY ./geckodriver /app/geckodriver
 COPY ./env.py /app/env.py
 RUN mkdir -m 777 /home/appuser 
 
