@@ -39,7 +39,7 @@ verwaltung = driver.find_element_by_xpath("/html/body/div/div[5]/div[1]/ul/li/a"
 verwaltung.click()
 notenuebersicht = driver.find_element_by_xpath("/html/body/div/div[5]/div[2]/div/form/div/ul/li[3]/a")
 notenuebersicht.click()
-Leistungen = driver.find_element_by_xpath("/html/body/div/div[5]/div[2]/form/ul/li[2]/a[1]")
+Leistungen = driver.find_element_by_xpath("/html/body/div/div[5]/div[2]/form/ul/li/a[1]/img")
 Leistungen.click()
 leistungstabelle = "/html/body/div/div[5]/div[2]/form/table[2]"
 tabelle = driver.find_element_by_xpath(leistungstabelle).text
