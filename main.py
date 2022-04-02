@@ -16,6 +16,7 @@ from env import sender_mail as sender  # Versendender Mailserver
 from env import empfaenger # Empfängeradresse
 
 refresh_intervall = 600 # Refresh Intervall
+senderrormessage = false # Sende keine Fehlerbenachrichtigung
 debug = 0   # 0 bedeutet headless; 1 nur für debug nutzen!
 
 chrome_options = Options()
@@ -67,14 +68,15 @@ if len(tabelle_neu) > len(tabelle):
     except smtplib.SMTPException:
         print("Error: unable to send email")
 else:
-    try:
-        msg = MIMEText(
-            'Etwas ist beim Notenchecker Script schief gegenagen')
-        msg['Subject'] = 'Fehler im Notenchecker Script'
-        msg['From'] = FROM
-        msg['To'] = x
-        smtpObject.sendmail(FROM, x, msg.as_string())
-        print('Successfully sent email')
-    except smtplib.SMTPException:
-        print("Error: unable to send email")
+    if senderrormessage:
+        try:
+            msg = MIMEText(
+                'Etwas ist beim Notenchecker Script schief gegangen')
+            msg['Subject'] = 'Fehler im Notenchecker Script'
+            msg['From'] = FROM
+            msg['To'] = x
+            smtpObject.sendmail(FROM, x, msg.as_string())
+            print('Successfully sent email')
+        except smtplib.SMTPException:
+            print("Error: unable to send email")
 driver.close()
